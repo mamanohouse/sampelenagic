@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Enagic Indonesia - Distributor Resmi Mesin Kangen Water</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Pusat informasi resmi mesin Kangen Water Enagic Indonesia. Solusi air minum sehat untuk keluarga.">
+    <meta name="author" content="Info Enagic Indonesia">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://infoenagic.com/">
+
+    <!-- Social Media Open Graph (SEO Preview) -->
+    <meta property="og:title" content="Info Enagic Indonesia - Distributor Resmi Mesin Kangen Water">
+    <meta property="og:description" content="Dapatkan informasi lengkap spesifikasi, manfaat, dan pemesanan mesin ionisasi air Kangen Water Enagic resmi di Indonesia.">
+    <meta property="og:image" content="https://infoenagic.com/assets/og-image.jpg">
+    <meta property="og:url" content="https://infoenagic.com/">
+    <meta property="og:type" content="website">
+
+    <style>
+        /* Pengaturan Dasar & Scroll Halus */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Scroll behavior dipindah ke html agar lebih clean */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: #333333;
+            line-height: 1.6;
+            background-color: #f9fbfd;
+            overflow-x: hidden;
+        }
+
+        /* Keyframes untuk Animasi Onload */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Header & Navigasi (Mobile First Layout) */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            border-bottom: 1px solid #e1e8ed;
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+
+        .nav-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0077b6;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #495057;
+            font-weight: 600;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #0077b6;
+        }
+
+        /* Responsive Desktop Header */
+        @media (min-width: 768px) {
+            .nav-container {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            
+            .nav-menu {
+                width: auto;
+                max-width: none;
+                gap: 30px;
+            }
+
+            .nav-menu a {
+                font-size: 0.95rem; /* Sedikit dibesarkan untuk kenyamanan di desktop */
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
+            color: #ffffff;
+            padding: 60px 5%;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background-color: #25d366;
+            color: #ffffff;
+            padding: 14px 28px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .btn-cta:hover {
+            transform: scale(1.05);
+        }
+
+        /* Layout Section */
+        .section {
+            padding: 50px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            scroll-margin-top: 90px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.6rem;
+            color: #0077b6;
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        /* Styling Card & Image */
+        .card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e1e8ed;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Delay Animasi untuk Card (Dipercepat agar snappy) */
+        .card:nth-child(1) { animation-delay: 0.05s; }
+        .card:nth-child(2) { animation-delay: 0.10s; }
+        .card:nth-child(3) { animation-delay: 0.15s; }
+        .card:nth-child(4) { animation-delay: 0.20s; }
+        .card:nth-child(5) { animation-delay: 0.25s; }
+        .card:nth-child(6) { animation-delay: 0.30s; }
+
+        .card h3 {
+            color: #0077b6;
+            margin-bottom: 15px;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 220px;
+            background-color: #e9ecef;
+            border: 2px dashed #adb5bd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover .image-placeholder {
+            background-color: #dee2e6;
+            transform: scale(1.02);
+        }
+
+        .btn-card {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: 2px solid #0077b6;
+            color: #0077b6;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        /* Styling Edukasi/Teknologi */
+        .trust-badge {
+            background-color: #e0f7fa;
+            border-left: 4px solid #00b4d8;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 0.35s;
+            opacity: 0;
+        }
+
+        /* Modal Pop-up */
+        .modal-popup {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-popup:target {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 90%;
+            width: 400px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            animation: zoomIn 0.3s ease;
+        }
+
+        .modal-image-placeholder {
+            width: 100%;
+            height: 280px;
+            background-color: #e9ecef;
+            border: 2px dashed #adb5bd;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #495057;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #6c757d;
+            text-decoration: none;
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: #000000;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.7); }
+            to { transform: scale(1); }
+        }
+
+        /* Footer & WhatsApp Floating */
+        footer {
+            background-color: #023e8a;
+            color: #ffffff;
+            text-align: center;
+            padding: 25px 5%;
+            font-size: 0.85rem;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            z-index: 1000;
+        }
+
+        /* Accessibility: Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+              .section-white {
+            background-color: #ffffff;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .margin-bottom-20 {
+            margin-bottom: 20px;
+        }
+
+        .footer-disclaimer {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            margin-top: 8px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigasi Utama -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">Info Enagic Indonesia</div>
+            <!-- Menu Navigasi Anchor Link -->
+            <nav class="nav-menu">
+                <a href="#katalog">Produk</a>
+                <a href="#teknologi">Teknologi</a>
+                <a href="#keunggulan">Keunggulan</a>
+                <a href="#konsultasi">Konsultasi</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Distributor Resmi Mesin Kangen Water Enagic</h1>
+            <p>Solusi Mesin Ionisasi Air Berkualitas Premium dengan Standar Manufaktur Jepang untuk Keseharian Keluarga Anda.</p>
+            <a href="https://wa.me/6285797953495?text=Halo,%20saya%20ingin%20tanya%20informasi%20mesin%20Kangen%20Water" class="btn-cta">Konsultasi Gratis via WhatsApp</a>
+        </section>
+
+        <!-- Bagian Katalog Produk -->
+        <section id="katalog" class="section">
+            <h2 class="section-title">Katalog Mesin Enagic Official</h2>
+            <div class="grid">
+                <article class="card">
+                    <a href="#img-anespa" style="text-decoration: none;">
+                        <div class="image-placeholder" role="img" aria-label="Gambar Mesin Anespa DX Enagic">Anespa DX</div>
+                    </a>
+                    <h3>Anespa DX</h3>
+                    <a href="https://wa.me/6285797953495?text=Halo,%20saya%20ingin%20tanya%20produk%20Anespa%20DX" class="btn-card">Tanya Produk</a>
+                </article>
+                <article class="card">
+                    <a href="#img-jriv" style="text-decoration: none;">
+                        <div class="image-placeholder" role="img" aria-label="Gambar Mesin Leveluk JRIV Enagic">Leveluk JRIV</div>
+                    </a>
+                    <h3>Leveluk JRIV</h3>
+                    <a href="https://wa.me/6285797953495?text=Halo,%20saya%20ingin%20tanya%20produk%20Leveluk%20JRIV" class="btn-card">Tanya Produk</a>
+                </article>
+                <article class="card">
+                    <a href="#img-k8" style="text-decoration: none;">
+                        <div class="image-placeholder" role="img" aria-label="Gambar Mesin Leveluk Kangen 8 Enagic">Leveluk Kangen 8</div>
+                    </a>
+                    <h3>Leveluk Kangen 8</h3>
+                    <a href="https://wa.me/6285797953495?text=Halo,%20saya%20ingin%20tanya%20produk%20Leveluk%20Kangen%208" class="btn-card">Tanya Produk</a>
+                </article>
+                <article class="card">
+                    <a href="#img-sd501dx" style="text-decoration: none;">
+                        <div class="image-placeholder" role="img" aria-label="Gambar Mesin Leveluk SD501DX Enagic">Leveluk SD501DX</div>
+                    </a>
+                    <h3>Leveluk SD501DX</h3>
+                    <a href="https://wa.me/6285797953495?text=Halo,%20saya%20ingin%20tanya%20produk%20Leveluk%20SD501DX" class="btn-card">Tanya Produk</a>
+                </article>
+                <article class="card">
+                    <a href="#img-emguarde" style="text-decoration: none;">
+                        <div class="image-placeholder" role="img" aria-label="Gambar Perangkat emGuarde Enagic">emGuarde</div>
+                    </a>
+                    <h3>emGuarde</h3>
+                    <a href="https://wa.me/6285797953495?text=Halo,%20saya%20ingin%20tanya%20produk%20emGuarde" class="btn-card">Tanya Produk</a>
+                </article>
+                <article class="card">
+                    <a href="#img-super501" style="text-decoration: none;">
+                        <div class="image-placeholder" role="img" aria-label="Gambar Mesin Leveluk SUPER 501 Enagic">Leveluk SUPER 501</div>
+                    </a>
+                    <h3>Leveluk SUPER 501</h3>
+                    <a href="https://wa.me/6285797953495?text=Halo,%20saya%20ingin%20tanya%20produk%20Leveluk%20SUPER%20501" class="btn-card">Tanya Produk</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- Bagian Teknologi -->
+        <section id="teknologi" class="section section-white">
+            <h2 class="section-title">Teknologi Teruji Enagic Japan</h2>
+            <p class="text-center margin-bottom-20">Diproses menggunakan teknologi ionisasi titanium berlapis platina dengan standar manufaktur tingkat tinggi Jepang.</p>
+            <div class="trust-badge">
+                <strong>Sertifikasi Global:</strong> Seluruh unit mesin Enagic diproduksi di pabrik resmi Osaka, Jepang dan telah diakui oleh ribuan praktisi global.
+            </div>
+        </section>
+
+        <!-- Bagian Keunggulan -->
+        <section id="keunggulan" class="section">
+            <h2 class="section-title">Keunggulan Utama Kangen Water</h2>
+            <div class="grid">
+                <article class="card">
+                    <h3>Kaya Antioksidan</h3>
+                    <p>Kandungan hidrogen aktif membantu mendukung vitalitas dan menjaga kebugaran tubuh sehari-hari.</p>
+                </article>
+                <article class="card">
+                    <h3>Molekul Micro-Clustered</h3>
+                    <p>Struktur molekul air yang ekstra kecil membantu mengoptimalkan proses hidrasi harian keluarga Anda.</p>
+                </article>
+                <article class="card">
+                    <h3>pH Basa Alami</h3>
+                    <p>Mendukung gaya hidup seimbang dengan asupan air minum berkualitas yang sesuai dengan kebutuhan hidrasi.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Bagian Konsultasi -->
+        <section id="konsultasi" class="section">
+            <h2 class="section-title">Konsultasi & Pemesanan Resmi</h2>
+            <div class="text-center">
+                <p class="margin-bottom-20">Dapatkan edukasi lengkap, penawaran harga resmi, serta panduan instalasi mesin langsung dari tim kami.</p>
+                <a href="https://wa.me/6285797953495?text=Halo,%20saya%20ingin%20pesan%20mesin%20Kangen%20Water" class="btn-cta">Konsultasi Sekarang</a>
+            </div>
+        </section>
+    </main>
+    <!-- Modal Pop-up Produk -->
+    <div id="img-anespa" class="modal-popup">
+        <div class="modal-content">
+            <a href="#" class="close-btn">&times;</a>
+            <div class="modal-image-placeholder">Detail Gambar Anespa DX</div>
+            <h3>Anespa DX</h3>
+        </div>
+    </div>
+
+    <div id="img-jriv" class="modal-popup">
+        <div class="modal-content">
+            <a href="#" class="close-btn">&times;</a>
+            <div class="modal-image-placeholder">Detail Gambar Leveluk JRIV</div>
+            <h3>Leveluk JRIV</h3>
+        </div>
+    </div>
+
+    <div id="img-k8" class="modal-popup">
+        <div class="modal-content">
+            <a href="#" class="close-btn">&times;</a>
+            <div class="modal-image-placeholder">Detail Gambar Leveluk Kangen 8</div>
+            <h3>Leveluk Kangen 8</h3>
+        </div>
+    </div>
+
+    <div id="img-sd501dx" class="modal-popup">
+        <div class="modal-content">
+            <a href="#" class="close-btn">&times;</a>
+            <div class="modal-image-placeholder">Detail Gambar Leveluk SD501DX</div>
+            <h3>Leveluk SD501DX</h3>
+        </div>
+    </div>
+
+    <div id="img-emguarde" class="modal-popup">
+        <div class="modal-content">
+            <a href="#" class="close-btn">&times;</a>
+            <div class="modal-image-placeholder">Detail Gambar emGuarde</div>
+            <h3>emGuarde</h3>
+        </div>
+    </div>
+
+    <div id="img-super501" class="modal-popup">
+        <div class="modal-content">
+            <a href="#" class="close-btn">&times;</a>
+            <div class="modal-image-placeholder">Detail Gambar Leveluk SUPER 501</div>
+            <h3>Leveluk SUPER 501</h3>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Info Enagic Indonesia. All rights reserved.</p>
+        <p class="footer-disclaimer">
+            Disclaimer: Website ini dikelola oleh Independen Distributor Resmi Enagic Indonesia. Kangen Water® adalah merek dagang terdaftar milik Enagic Co., Ltd.
+        </p>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/6285797953495?text=Halo,%20saya%20ingin%20tanya%20informasi%20Kangen%20Water" class="whatsapp-float" aria-label="Hubungi via WhatsApp">Chat WhatsApp</a>
+
+</body>
+</html>
