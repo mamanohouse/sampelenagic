@@ -1,35 +1,347 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // 1. Elemen Hero (langsung dianimasikan saat halaman dimuat)
-  const heroElements = document.querySelectorAll(".hero-section h1, .hero-section p");
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-  heroElements.forEach((element) => {
-    const isHeading = element.tagName === "H1" || element.classList.contains("hero-title");
-    const slideDirection = isHeading ? "slide-left" : "slide-right";
 
-    element.classList.add(slideDirection, "is-visible");
-  });
+        /* Hero Animation */
 
-  // 2. IntersectionObserver untuk elemen di luar Hero
-  const observer = new IntersectionObserver(
-    (entries, observerInstance) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
 
-        const { target } = entry;
-        const isHeading = ["H1", "H2", "H3"].includes(target.tagName);
-        const slideDirection = isHeading ? "slide-left" : "slide-right";
+        const heroElements =
+            document.querySelectorAll(
+                ".hero-section :is(h1, h2, h3, p, .hero-eyebrow)"
+            );
 
-        target.classList.add(slideDirection, "is-visible");
-        observerInstance.unobserve(target);
-      });
-    },
-    { threshold: 0.15 }
-  );
 
-  // 3. Daftarkan elemen main (selain hero) ke observer
-  const animatedElements = document.querySelectorAll(
-    "main section:not(.hero-section) :is(h1, h2, h3, p)"
-  );
+        heroElements.forEach(
+            (
+                element,
+                index
+            ) => {
 
-  animatedElements.forEach((element) => observer.observe(element));
-});
+
+                const isHeading =
+                    element.matches(
+                        "h1, h2, h3"
+                    );
+
+
+                element.classList.add(
+                    isHeading
+                        ? "slide-left"
+                        : "slide-right"
+                );
+
+
+                setTimeout(
+                    () => {
+
+
+                        element.classList.add(
+                            "is-visible"
+                        );
+
+
+                    },
+                    index * 120
+                );
+
+
+            }
+        );
+
+
+        /* Scroll Animation */
+
+
+        const observer =
+            new IntersectionObserver(
+                (
+                    entries,
+                    observerInstance
+                ) => {
+
+
+                    entries.forEach(
+                        (
+                            entry
+                        ) => {
+
+
+                            if (
+                                !entry.isIntersecting
+                            ) {
+                                return;
+                            }
+
+
+                            const element =
+                                entry.target;
+
+
+                            const isHeading =
+                                element.matches(
+                                    "h1, h2, h3"
+                                );
+
+
+                            element.classList.add(
+                                isHeading
+                                    ? "slide-left"
+                                    : "slide-right"
+                            );
+
+
+                            element.classList.add(
+                                "is-visible"
+                            );
+
+
+                            observerInstance.unobserve(
+                                element
+                            );
+
+
+                        }
+                    );
+
+
+                },
+                {
+                    threshold:
+                        0.15
+                }
+            );
+
+
+        const animatedElements =
+            document.querySelectorAll(
+                [
+                    "main section:not(.hero-section) h1",
+                    "main section:not(.hero-section) h2",
+                    "main section:not(.hero-section) h3",
+                    "main section:not(.hero-section) p"
+                ].join(
+                    ", "
+                )
+            );
+
+
+        animatedElements.forEach(
+            (
+                element
+            ) => {
+
+
+                const isInsideProductCard =
+                    element.closest(
+                        ".product-card"
+                    );
+
+
+                if (
+                    isInsideProductCard
+                ) {
+                    return;
+                }
+
+
+                observer.observe(
+                    element
+                );
+
+
+            }
+        );
+
+
+        /* Product Card Toggle */
+
+
+        const productToggles =
+            document.querySelectorAll(
+                ".product-card-toggle"
+            );
+
+
+        productToggles.forEach(
+            (
+                toggle
+            ) => {
+
+
+                toggle.addEventListener(
+                    "click",
+                    () => {
+
+
+                        const productCard =
+                            toggle.closest(
+                                ".product-card"
+                            );
+
+
+                        const productDetails =
+                            productCard.querySelector(
+                                ".product-card-details"
+                            );
+
+
+                        if (
+                            !productDetails
+                        ) {
+                            return;
+                        }
+
+
+                        const isOpen =
+                            productDetails.classList.contains(
+                                "is-open"
+                            );
+
+
+                        if (
+                            isOpen
+                        ) {
+
+
+                            toggle.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+
+
+                            productDetails.classList.remove(
+                                "is-open"
+                            );
+
+
+                            productDetails.classList.remove(
+                                "is-closing"
+                            );
+
+
+                            requestAnimationFrame(
+                                () => {
+
+
+                                    productDetails.classList.add(
+                                        "is-closing"
+                                    );
+
+
+                                }
+                            );
+
+
+                            const closeAnimationDuration =
+                                250;
+
+
+                            setTimeout(
+                                () => {
+
+
+                                    productDetails.classList.remove(
+                                        "is-closing"
+                                    );
+
+
+                                },
+                                closeAnimationDuration
+                            );
+
+
+                        } else {
+
+
+                            toggle.setAttribute(
+                                "aria-expanded",
+                                "true"
+                            );
+
+
+                            productDetails.classList.remove(
+                                "is-closing"
+                            );
+
+
+                            productDetails.classList.add(
+                                "is-open"
+                            );
+
+
+                        }
+
+
+                    }
+                );
+
+
+            }
+        );
+
+
+    }
+);
+
+        /* Article Accordion */
+
+
+        const articleItems =
+            document.querySelectorAll(
+                ".article-item"
+            );
+
+
+        if (
+            articleItems.length > 0
+        ) {
+
+
+            articleItems.forEach(
+                function(articleItem) {
+
+
+                    articleItem.addEventListener(
+                        "toggle",
+                        function() {
+
+
+                            if (
+                                articleItem.open
+                            ) {
+
+
+                                articleItems.forEach(
+                                    function(otherArticle) {
+
+
+                                        if (
+                                            otherArticle !==
+                                            articleItem
+                                        ) {
+
+
+                                            otherArticle.open =
+                                                false;
+
+
+                                        }
+
+
+                                    }
+                                );
+
+
+                            }
+
+
+                        }
+                    );
+
+
+                }
+            );
+
+
+        }
